@@ -1,9 +1,18 @@
+import React from 'react';
 import {
     TextField,
     InputAdornment,
     Fab,
-    Tooltip
+    Tooltip,
+    Grid,
+    Typography,
+    Card,
+    CardMedia,
+    CardActions,
+    CardContent,
+    Button
 } from '@mui/material';
+import ImageTest from './../../../assets/PyPosLogin.png';
 import {makeStyles} from '@material-ui/core/styles';
 import IconQrCode from '@mui/icons-material/QrCode';
 
@@ -12,27 +21,15 @@ import IconRemoveItem from '@mui/icons-material/Delete';
 import IconClearShoppoingCart from '@mui/icons-material/RemoveShoppingCart';
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-        position: 'absolute',
-        top: '64px',
-        bottom: '64px',
-        left: 0,
-        right: 0
-    },
+    
     fabDone: {
-        position: 'fixed',
-        bottom: theme.spacing(2),
-        right: theme.spacing(2)
     },
     fabRemoveItem: {
-        position: 'fixed',
-        bottom: theme.spacing(2),
-        right: theme.spacing(10)
     },
     fabClearItem: {
-        position: 'fixed',
-        bottom: theme.spacing(2),
-        right: theme.spacing(18)
+    },
+    minPadding:{
+        margin:theme.spacing(8)
     }
   }));
 
@@ -40,34 +37,67 @@ const ShoppingCart = () =>{
     const classes = useStyles();
     return (
         <>
-        <TextField
-            id='outlined-basic'
-            label='Contraseña'
-            variant='outlined'
-            fullWidth
-            InputProps={{
-                startAdornment: (
-                    <InputAdornment position='start'>
-                        <IconQrCode/>
-                    </InputAdornment>
-                ),
-            }}
-            />
-            <Tooltip title="Realizar Venta" arrow >
-                <Fab color='primary' aria-label='add' className={classes.fabDone}>
-                    <IconDone/>
-                </Fab>
-            </Tooltip>
-            <Tooltip title="Remover Articulo Del Carrito" arrow disableFocusListener>
-                <Fab color='primary' aria-label='add' className={classes.fabRemoveItem}>
-                    <IconRemoveItem/>
-                </Fab>
-            </Tooltip>
-            <Tooltip title="Cancelar Venta" arrow disableFocusListener>
-                <Fab color='primary' aria-label='add' className={classes.fabClearItem}>
-                    <IconClearShoppoingCart/>
-                </Fab>
-            </Tooltip>
+            <Grid container>
+                <Grid item xs={8}>
+                    <TextField
+                            id='outlined-basic'
+                            className={classes.minPadding}
+                            label='Contraseña'
+                            variant='outlined'
+                            fullWidth
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position='start'>
+                                        <IconQrCode/>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    <Card sx={{ maxWidth: 345 }}>
+                        <CardMedia
+                            sx={{ height: 140 }}
+                            image={ImageTest}
+                            title="green iguana"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                            Coca Cola 600 ml
+                            </Typography>
+                            <Typography variant="h6" color="text.secondary">
+                                Costo: $20
+                            </Typography>
+                            <Typography variant="h6" color="text.secondary">
+                                Piezas: 23
+                            </Typography>
+                            
+                            <Typography variant="h6" color="text.primary">
+                                Total: $1200
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small">Share</Button>
+                            <Button size="small">Learn More</Button>
+                        </CardActions>
+                    </Card>
+                </Grid>
+                <Grid item xs={4}>
+                    <Tooltip title="Realizar Venta" arrow >
+                        <Fab color='primary' aria-label='add' className={classes.fabDone}>
+                            <IconDone/>
+                        </Fab>
+                    </Tooltip>
+                    <Tooltip title="Remover Articulo Del Carrito" arrow disableFocusListener>
+                        <Fab color='primary' aria-label='add' className={classes.fabRemoveItem}>
+                            <IconRemoveItem/>
+                        </Fab>
+                    </Tooltip>
+                    <Tooltip title="Cancelar Venta" arrow disableFocusListener>
+                        <Fab color='primary' aria-label='add' className={classes.fabClearItem}>
+                            <IconClearShoppoingCart/>
+                        </Fab>
+                    </Tooltip>
+                </Grid>
+            </Grid>
         </>
     );
 };
