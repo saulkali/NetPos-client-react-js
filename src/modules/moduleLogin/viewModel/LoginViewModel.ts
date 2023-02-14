@@ -1,4 +1,3 @@
-import {observable, action} from 'mobx';
 import LoginResponses from '../enums/LoginResponses';
 import LoginRepository from '../model/LoginRepository';
 import { makeAutoObservable } from 'mobx';
@@ -7,6 +6,7 @@ class LoginViewModel{
     username:string = "";
     password:string = "";
     showLoader:boolean = false;
+    showMessageBox: boolean = false;
     messageLoginResponse:LoginResponses = LoginResponses.UNKNOW;
     _loginRepository:LoginRepository;
  
@@ -14,8 +14,17 @@ class LoginViewModel{
         this._loginRepository = loginRepository;
         makeAutoObservable(this);
     }
+    
     login = async () => {
-        alert(this.username);
+        if(this.username.length === 0 || this.password.length === 0)
+            this.messageLoginResponse = LoginResponses.EMPTYFIELDS;
+        else 
+        {
+            this.showLoader = true;
+            this.messageLoginResponse = await this._loginRepository.Auth(this.username,this.password);
+            this.showLoader = false;
+            this.showMessageBox = true;
+        }
     }
 }
 

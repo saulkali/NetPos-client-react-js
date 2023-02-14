@@ -11,7 +11,8 @@ class LoginRepository{
                 "Password":password
             };
             const response = await axios.post(
-                ApiReferences.apiBase + ApiReferences.authLoginReference,
+                ApiReferences.apiBase + 
+                ApiReferences.authLoginReference,
                 data
             )
             loginResponse = Promise.resolve(

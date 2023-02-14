@@ -1,4 +1,4 @@
-import {useSpring,animated} from 'react-spring';
+import {useSpring} from 'react-spring';
 
 const TitleAnimationLogin = () =>{
     return useSpring({

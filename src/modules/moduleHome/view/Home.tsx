@@ -1,16 +1,9 @@
 import ShoppingCart from './../../moduleShoppingCart/view/ShoppingCart';
 
-import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../../common/components/Loader';
 import {
     Grid,
-    AppBar,
-    Toolbar,
-    Tooltip,
-    IconButton,
-    Typography,
-    Drawer,
     List,
     ListItem,
     ListItemText,
@@ -24,22 +17,14 @@ import IconShoppingCart from '@mui/icons-material/ShoppingCart';
 import IconAccountBox from '@mui/icons-material/AccountBox';
 import IconLogOut from '@mui/icons-material/ExitToApp';
 import IconEdit from '@mui/icons-material/Edit';
-import IconMenu from '@mui/icons-material/Menu';
 
 const Home = () => {
 
-    const [openMenu,setOpenMenu] = useState(false);
     const navigate = useNavigate();
-    const OpenMenuClick = () =>{
-        setOpenMenu(!openMenu);
-    };
-
-    const CloseMenuClick = () =>{
-        setOpenMenu(false);
-    };
+    
     return(
     <>
-        <Loader/>
+        <Loader isOpen={false}/>
         <Grid container>
             <Grid item xs={2}>
                 <List>
