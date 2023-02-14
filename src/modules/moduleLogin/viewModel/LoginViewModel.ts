@@ -1,29 +1,23 @@
 import {observable, action} from 'mobx';
-import {useNavigate} from 'react-router-dom';
+import LoginResponses from '../enums/LoginResponses';
+import LoginRepository from '../model/LoginRepository';
+import { makeAutoObservable } from 'mobx';
 
 class LoginViewModel{
-    @observable username:string = '';
-    @observable password:string = '';
-    @observable showLoader:boolean = false;
-
-    @action
-    setUsername(value:string){
-        this.username = value;
+    username:string = "";
+    password:string = "";
+    showLoader:boolean = false;
+    messageLoginResponse:LoginResponses = LoginResponses.UNKNOW;
+    _loginRepository:LoginRepository;
+ 
+    constructor(loginRepository:LoginRepository){
+        this._loginRepository = loginRepository;
+        makeAutoObservable(this);
     }
-    
-    @action
-    setPassword(value:string){
-        this.password = value;
-    }
-
-    @action
-    setShowLoader(value:boolean){
-        this.showLoader = value;
-    }
-
-    login(){
-        this.showLoader = true;
+    login = async () => {
+        alert(this.username);
     }
 }
 
-export default new LoginViewModel();
+export default LoginViewModel;
+  
