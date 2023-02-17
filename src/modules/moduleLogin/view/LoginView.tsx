@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {animated} from 'react-spring';
 import {makeStyles} from '@material-ui/core/styles';
 import TitleAnimationLogin from '../animations/Animations';
@@ -8,6 +8,11 @@ import ImageLogin from './../../../assets/PyPosLogin.png';
 import IconSend from '@mui/icons-material/Send';
 import IconEmail from '@mui/icons-material/Email';
 import IconPassword from '@mui/icons-material/Password';
+
+import LoginResponses from '../enums/LoginResponses';
+import Stringsval from '../../../res/StringsVal';
+import {useNavigate } from 'react-router-dom';
+
 
 import Loader from '../../../common/components/Loader';
 import {
@@ -29,7 +34,6 @@ import {
     Snackbar,
     Alert
 } from '@mui/material';
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -69,15 +73,41 @@ interface LoginViewModelProps{
 }
 
 const LoginView:React.FC<LoginViewModelProps> = ({viewModel})=> { 
-
+    const [messageSnackBar,setMessageSnackBar] = useState("");
     const classes = useStyles();
     const titleAnimation = TitleAnimationLogin();
+    const navigate = useNavigate();
+
+    useEffect(
+        () => {
+            switch(viewModel.messageLoginResponse){
+                case LoginResponses.CREDENTIALNOTVALID:
+                    setMessageSnackBar(Stringsval.msgSnackBarCredentialNotValid);
+                    break;
+                case LoginResponses.EMPTYFIELDS:
+                    setMessageSnackBar(Stringsval.msgSnackBarEmptysFields);
+                    break;
+                case LoginResponses.SUCCESS:
+                    navigate("/");
+                    break;
+                case LoginResponses.USERNOTEXISTS:
+                    setMessageSnackBar(Stringsval.msgSnackaBarUserNotExists);
+                    break;
+                default:
+                    setMessageSnackBar(Stringsval.msgSnackBarUnknow);
+                    break;
+            }
+        }, 
+        [viewModel.messageLoginResponse,navigate]
+    );
+
     return (
+        
         <Grid container className={classes.root}>
             <Loader isOpen={viewModel.showLoader} />
-            <Snackbar open={viewModel.showMessageBox} autoHideDuration={4000} onClose= {()=> viewModel.showMessageBox = false}>
-                <Alert onClose={()=> viewModel.showMessageBox = false} severity="success" sx={{ width: '100%' }}>
-                This is a success message!
+            <Snackbar open={viewModel.showSnackBar} autoHideDuration={4000} onClose= {()=> viewModel.showSnackBar = false}>
+                <Alert onClose={()=> viewModel.showSnackBar = false} severity="error" sx={{ width: '100%' }}>
+                    {messageSnackBar}
                 </Alert>
             </Snackbar>
             <Grid item xs={7} className={classes.imageContainer} />
@@ -93,7 +123,6 @@ const LoginView:React.FC<LoginViewModelProps> = ({viewModel})=> {
                                 Inicio De Sesion
                             </Typography>
                             <form className={classes.form} onSubmit={(e)=> e.preventDefault()} >
-
                                 <TextField
                                     variant='outlined'
                                     margin='normal'

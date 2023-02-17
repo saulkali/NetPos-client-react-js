@@ -6,16 +6,18 @@ class LoginViewModel{
     username:string = "";
     password:string = "";
     showLoader:boolean = false;
-    showMessageBox: boolean = false;
+    showSnackBar:boolean = false;
     messageLoginResponse:LoginResponses = LoginResponses.UNKNOW;
     _loginRepository:LoginRepository;
- 
+    
     constructor(loginRepository:LoginRepository){
         this._loginRepository = loginRepository;
-        makeAutoObservable(this);
+        makeAutoObservable(this);    
     }
     
     login = async () => {
+
+        
         if(this.username.length === 0 || this.password.length === 0)
             this.messageLoginResponse = LoginResponses.EMPTYFIELDS;
         else 
@@ -23,7 +25,8 @@ class LoginViewModel{
             this.showLoader = true;
             this.messageLoginResponse = await this._loginRepository.Auth(this.username,this.password);
             this.showLoader = false;
-            this.showMessageBox = true;
+            this.showSnackBar = true;
+            
         }
     }
 }

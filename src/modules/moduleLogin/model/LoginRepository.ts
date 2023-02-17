@@ -16,8 +16,9 @@ class LoginRepository{
                 data
             )
             loginResponse = Promise.resolve(
-                response.data as LoginResponses
+                response.data.response as LoginResponses
             );
+            
         }catch(error){
             console.log(error);
         }

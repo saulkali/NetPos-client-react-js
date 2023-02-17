@@ -59,6 +59,12 @@ const Home = () => {
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
+                            <IconShoppingCart/>
+                        </ListItemIcon>
+                        <ListItemText primary="Inventario"/>
+                    </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>
                             <IconAccountBox/>
                         </ListItemIcon>
                         <ListItemText primary="Registrar Empleado"/>
