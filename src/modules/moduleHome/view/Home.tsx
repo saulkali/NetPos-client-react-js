@@ -1,5 +1,8 @@
 import ShoppingCart from './../../moduleShoppingCart/view/ShoppingCart';
+import InventoryView from '../../moduleInventory/view/InventoryView';
+import InventoryViewModel from '../../moduleInventory/viewModel/InventoryViewModel';
 
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../../common/components/Loader';
 import {
@@ -19,7 +22,10 @@ import IconLogOut from '@mui/icons-material/ExitToApp';
 import IconEdit from '@mui/icons-material/Edit';
 
 const Home = () => {
-
+    const [activeComponent,setActiveComponent] = useState("ShoppingCart");
+    const OpenView = (viewName:string) =>{
+        setActiveComponent(viewName);
+    };
     const navigate = useNavigate();
     
     return(
@@ -51,13 +57,13 @@ const Home = () => {
                 
                 <ListSubheader>Herramientas</ListSubheader>
                 <List>
-                    <ListItem button>
+                    <ListItem button onClick={ () => setActiveComponent("ShoppingCart")}>
                         <ListItemIcon>
                             <IconShoppingCart/>
                         </ListItemIcon>
                         <ListItemText primary="Carrito De Ventas"/>
                     </ListItem>
-                    <ListItem button>
+                    <ListItem button onClick={ () => setActiveComponent("Inventory")}>
                         <ListItemIcon>
                             <IconShoppingCart/>
                         </ListItemIcon>
@@ -98,7 +104,9 @@ const Home = () => {
                 
             </Grid>
             <Grid item xs={10}>
-                <ShoppingCart/>
+                {activeComponent === 'ShoppingCart' && <ShoppingCart/>}
+
+                {activeComponent === 'Inventory' && <InventoryView />}
             </Grid>
         </Grid>
     </>)
