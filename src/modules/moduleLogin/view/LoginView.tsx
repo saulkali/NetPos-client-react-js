@@ -105,7 +105,14 @@ const LoginView:React.FC<LoginViewModelProps> = ({viewModel})=> {
         
         <Grid container className={classes.root}>
             <Loader isOpen={viewModel.showLoader} />
-            <Snackbar open={viewModel.showSnackBar} autoHideDuration={4000} onClose= {()=> viewModel.showSnackBar = false}>
+            <Snackbar 
+                open={viewModel.showSnackBar} 
+                autoHideDuration={4000}
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  }}
+                onClose= {()=> viewModel.showSnackBar = false}>
                 <Alert onClose={()=> viewModel.showSnackBar = false} severity="error" sx={{ width: '100%' }}>
                     {messageSnackBar}
                 </Alert>

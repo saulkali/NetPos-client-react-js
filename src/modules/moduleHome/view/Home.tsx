@@ -23,9 +23,6 @@ import IconEdit from '@mui/icons-material/Edit';
 
 const Home = () => {
     const [activeComponent,setActiveComponent] = useState("ShoppingCart");
-    const OpenView = (viewName:string) =>{
-        setActiveComponent(viewName);
-    };
     const navigate = useNavigate();
     
     return(
