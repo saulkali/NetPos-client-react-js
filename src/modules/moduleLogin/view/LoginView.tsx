@@ -44,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        height: "33%",
+        [theme.breakpoints.up("sm")]: {
+            height: "100%",
+        }
     },
     formContainer: {
         backgroundColor: theme.palette.background.default,
@@ -117,8 +121,8 @@ const LoginView:React.FC<LoginViewModelProps> = ({viewModel})=> {
                     {messageSnackBar}
                 </Alert>
             </Snackbar>
-            <Grid item xs={7} className={classes.imageContainer} />
-            <Grid item xs={5} className={classes.formContainer}>
+            <Grid item xs={12} sm={7} className={classes.imageContainer} />
+            <Grid item xs={12} sm={5} className={classes.formContainer}>
                 <div>
                     <CssBaseline/>
                     <div className={classes.paper}>
