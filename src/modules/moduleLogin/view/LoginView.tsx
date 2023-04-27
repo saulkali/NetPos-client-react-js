@@ -196,12 +196,12 @@ const LoginView:React.FC<LoginViewModelProps> = ({viewModel})=> {
                                         </Link>
                                     </Grid>
                                     <Grid item>
-                                        <Link href='#' variant='body2'>
-                                            {"Aun no tienes cuenta?"}
+                                        <Link onClick={()=> navigate("/settings")} variant='body2'>
+                                            {"Configuraciones"}
                                         </Link>
                                     </Grid>
                                 </Grid>
-                                <p>Copyright © pypos 2023.</p>
+                                <p>Copyright © NetPos 2023.</p>
                             </form>
                         </animated.div>
                     </div>

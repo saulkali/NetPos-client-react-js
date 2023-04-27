@@ -4,7 +4,7 @@ import ShoppingCar from "../../modules/moduleHome/view/Home";
 import { Provider } from 'mobx-react';
 import LoginViewModel from '../../modules/moduleLogin/viewModel/LoginViewModel';
 import LoginRepository from '../../modules/moduleLogin/model/LoginRepository';
-
+import SettingsView from '../../modules/moduleSettings/view/SettingsView';
 const loginViewModel:LoginViewModel = new LoginViewModel(new LoginRepository());
 
 const RouterUtil = [
@@ -21,6 +21,10 @@ const RouterUtil = [
     {
         path:"/",
         element: <ShoppingCar/>
+    },
+    {
+      path:"/settings",
+      element:<SettingsView/>
     }
 ];
 
