@@ -21,7 +21,7 @@ interface InventoryViewModelProps{
 
 const InventoryHomeView:React.FC<InventoryViewModelProps> = ({viewModel,setActiveComponent}) =>{
     return (
-        <Grid container>
+        <Grid container margin={2}>
             <Grid item xs={12}>
                 <TextField
                     id='outlined-basic'
