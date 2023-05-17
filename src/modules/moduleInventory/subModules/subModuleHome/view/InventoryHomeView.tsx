@@ -6,7 +6,16 @@ import {
     InputAdornment,
     Tooltip,
     IconButton,
-    Fab,
+    TableContainer,
+    Table,
+    Paper,
+    TableCell,
+    TableBody,
+    TableHead,
+    TableRow,
+    SpeedDial,
+    SpeedDialIcon,
+    SpeedDialAction
 } from '@mui/material';
 
 import IconQrCode from '@mui/icons-material/QrCode';
@@ -44,13 +53,45 @@ const InventoryHomeView:React.FC<InventoryViewModelProps> = ({viewModel,setActiv
                         )
                     }}
                 />
+                <TableContainer component={Paper}>
+                    <Table aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Dessert (100g serving)</TableCell>
+                                <TableCell align="right">Calories</TableCell>
+                                <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow key='872734'>
+                                <TableCell component="th" scope="row">
+                                    Name Product
+                                </TableCell>
+                                <TableCell align="right">2</TableCell>
+                                <TableCell align="right">67</TableCell>
+                                <TableCell align="right">3</TableCell>
+                                <TableCell align="right">3</TableCell>
+                            </TableRow>
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </Grid>
-            <Tooltip title="Agregar Nuevo Articulo" arrow disableFocusListener>
-                <Fab color='primary' aria-label='add' onClick={()=>setActiveComponent("InventoryRegisterArticle")}>
-                    <IconAdd/>
-                </Fab>
-            </Tooltip>
+            <SpeedDial
+                ariaLabel="SpeedDial basic example"
+                sx={{ position: 'absolute', bottom: 16, right: 16 }}
+                icon={<SpeedDialIcon />}
+                >                    
+                    <SpeedDialAction
+                        key='name action'
+                        icon={<IconAdd/>}
+                        tooltipTitle='Agregar un nuevo articulo'
+                        onClick={()=>setActiveComponent("InventoryRegisterArticle")}
+                        />
+            </SpeedDial>
         </Grid>
+        
     );
 }
 

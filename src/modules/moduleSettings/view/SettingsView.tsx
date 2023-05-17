@@ -27,7 +27,7 @@ const SettingsView = () =>{
                         size='large'
                         edge='start'                        
                         color='inherit'
-                        onClick={()=> navigate('/')}
+                        onClick={()=> navigate('/login')}
                         arial-label='Volver'
                         sx={{mr:2}}>
                             <IconArrowLeft/>
